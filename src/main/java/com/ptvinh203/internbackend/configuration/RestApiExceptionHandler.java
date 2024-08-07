@@ -16,8 +16,6 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
@@ -102,13 +100,13 @@ public class RestApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ApiDataResponse> handleAccessDeniedException(
-            AccessDeniedException ex, HttpServletRequest request) {
-        ErrorResponse error = ErrorUtils.getExceptionError(ErrorMessageConstant.FORBIDDEN);
-        ApiDataResponse response = ApiDataResponse.error(error);
-        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
-    }
+//    @ExceptionHandler(AccessDeniedException.class)
+//    public ResponseEntity<ApiDataResponse> handleAccessDeniedException(
+//            AccessDeniedException ex, HttpServletRequest request) {
+//        ErrorResponse error = ErrorUtils.getExceptionError(ErrorMessageConstant.FORBIDDEN);
+//        ApiDataResponse response = ApiDataResponse.error(error);
+//        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+//    }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ApiDataResponse> handleMethodArgumentTypeMismatchException(
@@ -138,13 +136,13 @@ public class RestApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
-    public ResponseEntity<ApiDataResponse> handleAuthenticationCredentialsNotFoundException(
-            AuthenticationCredentialsNotFoundException ex, HttpServletRequest request) {
-        ErrorResponse error = ErrorUtils.getExceptionError(ErrorMessageConstant.UNAUTHORIZED);
-        ApiDataResponse response = ApiDataResponse.error(error);
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
-    }
+//    @ExceptionHandler(AuthenticationCredentialsNotFoundException.class)
+//    public ResponseEntity<ApiDataResponse> handleAuthenticationCredentialsNotFoundException(
+//            AuthenticationCredentialsNotFoundException ex, HttpServletRequest request) {
+//        ErrorResponse error = ErrorUtils.getExceptionError(ErrorMessageConstant.UNAUTHORIZED);
+//        ApiDataResponse response = ApiDataResponse.error(error);
+//        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+//    }
 
     @ExceptionHandler(InvalidDataException.class)
     public ResponseEntity<ApiDataResponse> handleInvalidDataException(
